@@ -5,9 +5,11 @@ export const ContactForm = ({addContact}) => {
 
   const onSubmit = (values, actions) => {
    
-    const contact = { id: nanoid(), ...values }
-    addContact(contact)
-    actions.resetForm()
+    const contact = { id: nanoid(), name: values.name.trim(), number: values.number.trim() }
+    const isUnique = addContact(contact)
+    if (isUnique) {
+      actions.resetForm();
+    }
   };
 
   return (
@@ -21,6 +23,7 @@ export const ContactForm = ({addContact}) => {
         handleChange,
       }) => (
         <Form >
+          <label>Name: 
           <input
             type="text"
             name="name"
@@ -28,7 +31,9 @@ export const ContactForm = ({addContact}) => {
             onChange={handleChange}
             value={values.name}
           />
-         
+          </label>
+          
+          <label>Number: 
           <input
             type="tel"
             name="number"
@@ -36,6 +41,8 @@ export const ContactForm = ({addContact}) => {
             onChange={handleChange}
             value={values.number}
           />
+          </label>
+          
 
           <button type="submit">Submit</button>
         </Form>
