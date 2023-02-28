@@ -11,6 +11,12 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  }
+}
+
   addContact = contact => {
     const isUnique = this.state.contacts.find(item => item.name === contact.name);
 
