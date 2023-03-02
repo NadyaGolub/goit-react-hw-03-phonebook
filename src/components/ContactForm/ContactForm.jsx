@@ -1,5 +1,6 @@
 import { Formik, Form } from 'formik';
 import { nanoid } from 'nanoid'
+import { Box, Btn, Label } from './ContactForm.styled';
 
 export const ContactForm = ({addContact}) => {
 
@@ -23,7 +24,8 @@ export const ContactForm = ({addContact}) => {
         handleChange,
       }) => (
         <Form >
-          <label>Name: 
+          <Box>
+          <Label> Name </Label>
           <input
             type="text"
             name="name"
@@ -31,9 +33,9 @@ export const ContactForm = ({addContact}) => {
             onChange={handleChange}
             value={values.name}
           />
-          </label>
           
-          <label>Number: 
+          
+          <Label>Number  </Label>
           <input
             type="tel"
             name="number"
@@ -41,10 +43,11 @@ export const ContactForm = ({addContact}) => {
             onChange={handleChange}
             value={values.number}
           />
-          </label>
+          
           
 
-          <button type="submit">Submit</button>
+          <Btn type="submit">Add contact</Btn>
+</Box>
         </Form>
       )}
     </Formik>

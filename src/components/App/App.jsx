@@ -1,9 +1,11 @@
 import { Component } from 'react';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import { Section } from './Section/Section';
-import { getFilterAddArray } from './Utils/getFilterAddArray';
+import { ContactForm } from '../ContactForm/ContactForm';
+import { ContactList } from '../ContactList/ContactList';
+import { Filter } from '../Filter/Filter';
+import { GlobalStyle } from '../GlobalStyle';
+import { Section } from '../Section/Section';
+import { getFilterAddArray } from '../Utils/getFilterAddArray';
+import { Container } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -47,7 +49,7 @@ this.setState({filter: event.target.value})
     const { contacts, filter } = this.state;
     const filteredContacts = getFilterAddArray(contacts, 'name', filter);
     return (
-      <div>
+      <Container>
         <Section title="Add contact">
           <ContactForm addContact={this.addContact} />
         </Section>
@@ -58,7 +60,8 @@ this.setState({filter: event.target.value})
         <Section title="Contact list">
           <ContactList contacts={filteredContacts} deleteContact={this.deleteContact} />
         </Section>
-      </div>
+        <GlobalStyle/>
+      </Container>
     );
   }
 }
